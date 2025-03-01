@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_helpers.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: onevilx <onevilx@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/25 23:27:59 by onevilx           #+#    #+#             */
-/*   Updated: 2025/02/25 23:28:43 by onevilx          ###   ########.fr       */
+/*   Created: 2025/02/28 15:51:29 by yaboukir          #+#    #+#             */
+/*   Updated: 2025/02/28 19:39:43 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "philo.h"
 
@@ -27,7 +28,7 @@ size_t	get_time(void)
 	struct timeval	time;
 
 	if (gettimeofday(&time, NULL) == -1)
-		write(2, "Error gettimeofday(-1)\n", 24);
+		write(2, "Error gettimeofday()\n", 24);
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
