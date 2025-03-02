@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 15:51:35 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/03/02 03:42:23 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/03/02 14:23:29 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,7 @@ void	start_forks(pthread_mutex_t *forks, int philos)
 
 	i = 0;
 	while (i < philos)
-	{
-		pthread_mutex_init(&forks[i], NULL);
-		i++;
-	}
+		pthread_mutex_init(&forks[i++], NULL);
 }
 
 void	start_philos(t_philo *philos, t_program *program,

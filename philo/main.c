@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 15:50:53 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/03/02 02:42:19 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/03/02 14:30:22 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 
 int	check_number(char *str)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
+	if (!str)
+		return (1);
+	while (*str)
 	{
-		if (str[i] < '0' || str[i] > '9')
+		if (*str < '0' || *str > '9')
 			return (1);
-		i++;
+		str++;
 	}
 	return (0);
 }

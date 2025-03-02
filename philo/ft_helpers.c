@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 15:51:29 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/03/02 03:39:05 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/03/02 14:37:25 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_delay(size_t milliseconds)
 
 	start = get_time();
 	while ((get_time() - start) < milliseconds)
-		usleep(300);
+		usleep(400);
 	return (0);
 }
 
@@ -61,10 +61,7 @@ int	ft_atoi(char *str)
 		i++;
 	}
 	while (str[i] >= '0' && str[i] <= '9')
-	{
-		number = number * 10 + (str[i] - 48);
-		i++;
-	}
+		number = number * 10 + (str[i++] - 48);
 	return (sign * number);
 }
 
@@ -82,8 +79,5 @@ void	destory_pthread(char *str, t_program *program, pthread_mutex_t *forks)
 	pthread_mutex_destroy(&program->meal_lock);
 	pthread_mutex_destroy(&program->dead_lock);
 	while (i < program->philos[0].num_of_philos)
-	{
-		pthread_mutex_destroy(&forks[i]);
-		i++;
-	}
+		pthread_mutex_destroy(&forks[i++]);
 }
