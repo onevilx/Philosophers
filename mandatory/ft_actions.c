@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 15:51:42 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/03/01 02:07:23 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/03/02 03:36:28 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_eat(t_philo *philo)
 		return ;
 	}
 	pthread_mutex_lock(philo->left_fork);
-	ft_message("has taken a fork", philo,  philo->id);
+	ft_message("has taken a fork", philo, philo->id);
 	philo->eating = 1;
 	ft_message("is eating", philo, philo->id);
 	pthread_mutex_lock(philo->meal_lock);

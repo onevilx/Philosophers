@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 15:50:53 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/03/01 01:33:13 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/03/02 02:42:19 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	check_number(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i])
+	while (str[i] != '\0')
 	{
-		if (str < '0' || str[i] > '9')
+		if (str[i] < '0' || str[i] > '9')
 			return (1);
 		i++;
 	}
@@ -48,9 +48,9 @@ int	main(int argc, char **argv)
 	t_philo			philos[PHILO_MAX];
 	pthread_mutex_t	forks[PHILO_MAX];
 
-	if (argc != 5 || argc != 6)
+	if (argc != 5 && argc != 6)
 		return (write(2, "Invalid input!", 15), 1);
-	if (check_number(argv) == 1)
+	if (valid_args(argv) == 1)
 		return (1);
 	start_program(&program, philos);
 	start_forks(forks, ft_atoi(argv[1]));

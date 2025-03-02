@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 15:51:35 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/02/28 23:01:56 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/03/02 03:42:23 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,21 @@ void	initialize_input(t_philo *philo, char **argv)
 	philo->time_to_eat = ft_atoi(argv[3]);
 	philo->time_to_sleep = ft_atoi(argv[4]);
 	if (argv[5])
-	philo->num_of_eat = ft_atoi(argv[5]);
+		philo->num_of_eat = ft_atoi(argv[5]);
 	else
-	philo->num_of_eat = -1;
-
+		philo->num_of_eat = -1;
 }
 
 void	start_program(t_program	*program, t_philo *philos)
 {
 	program->death_flag = 0;
 	program->philos = philos;
-	pthread_mutex_init(&program->dead_lock, NULL);
 	pthread_mutex_init(&program->write_lock, NULL);
+	pthread_mutex_init(&program->dead_lock, NULL);
 	pthread_mutex_init(&program->meal_lock, NULL);
 }
 
-void	start_forks(pthread_mutex_t	*forks, int	philos)
+void	start_forks(pthread_mutex_t *forks, int philos)
 {
 	int	i;
 
@@ -46,9 +45,10 @@ void	start_forks(pthread_mutex_t	*forks, int	philos)
 	}
 }
 
-void	start_philos(t_philo *philos, t_program *program, pthread_mutex_t *forks, char **argv)
+void	start_philos(t_philo *philos, t_program *program,
+			pthread_mutex_t *forks, char **argv)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < ft_atoi(argv[1]))
@@ -56,7 +56,7 @@ void	start_philos(t_philo *philos, t_program *program, pthread_mutex_t *forks, c
 		philos[i].id = i + 1;
 		philos[i].eating = 0;
 		philos[i].meals_eaten = 0;
-		initialize_input(&philos, argv);
+		initialize_input(&philos[i], argv);
 		philos[i].start_clock = get_time();
 		philos[i].last_meal = get_time();
 		philos[i].write_lock = &program->write_lock;

@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 15:51:18 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/03/01 01:30:31 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/03/02 02:49:22 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	thread_create(t_program *program, pthread_mutex_t *forks)
 	while (i < program->philos[0].num_of_philos)
 	{
 		if (pthread_create(&program->philos[i].thread, NULL, &philo_routine,
-				&program->philos[0] != 0))
+				&program->philos[i]) != 0)
 			destory_pthread("Thread Creation Error\n", program, forks);
 		i++;
 	}
