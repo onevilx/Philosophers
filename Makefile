@@ -6,12 +6,12 @@
 #    By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/01 19:09:46 by yaboukir          #+#    #+#              #
-#    Updated: 2025/03/02 15:55:29 by yaboukir         ###   ########.fr        #
+#    Updated: 2025/03/02 16:48:38 by yaboukir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS_PHILO = mandatory/main.c mandatory/ft_waiter.c mandatory/ft_actions.c \
-			 mandatory/ft_declare.c mandatory/ft_pthreads.c mandatory/ft_helpers.c \
+SRCS_PHILO = philo/main.c philo/ft_waiter.c philo/ft_actions.c \
+			 philo/ft_declare.c philo/ft_pthreads.c philo/ft_helpers.c \
 
 #SRCS_PHILO_BONUS =
 
@@ -22,10 +22,10 @@ CC = cc
 AR = ar r
 RM = rm -f
 CFLAGS = #-Wall -Wextra -Werror
-INCLUDE = mandatory/philo.h
-INCLUDE_BONUS = bonus/philo_bonus.h
-NAME_PHILO = philo
-#NAME_PHILO_BONUS = checker
+INCLUDE = philo/philo.h
+INCLUDE_BONUS = philo_bonus/philo_bonus.h
+NAME_PHILO = philo_exe
+#NAME_PHILO_BONUS =
 
 all: $(NAME_PHILO)
 
@@ -37,7 +37,7 @@ $(NAME_PHILO): $(OBJS_PHILO)
 #$(NAME_PHILO_BONUS): $(OBJS_PHILO_BONUS)
 #	$(CC) $(CFLAGS) $(OBJS_PHILO_BONUS) -o $(NAME_PHILO_BONUS)
 
-mandatory/%.o: mandatory/%.c $(INCLUDE)
+philo/%.o: philo/%.c $(INCLUDE)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 #bonus/%.o: bonus/%.c $(INCLUDE_BONUS)
