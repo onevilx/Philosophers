@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 15:51:01 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/03/02 03:40:12 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/03/03 00:34:07 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_message(char *str, t_philo *philo, int id)
 	pthread_mutex_lock(philo->write_lock);
 	time = get_time() - philo->start_clock;
 	if (!check_dead_loop(philo))
-		printf("%zu %d %s \n", time, id, str);
+		printf("%zu %d %s\n", time, id, str);
 	pthread_mutex_unlock(philo->write_lock);
 }
 
@@ -41,7 +41,7 @@ int	check_if_any_dead(t_philo *philos)
 	{
 		if (check_philo_dead(&philos[i], philos[i].time_to_die))
 		{
-			ft_message("Died", &philos[i], philos[i].id);
+			ft_message("died", &philos[i], philos[i].id);
 			pthread_mutex_lock(philos[0].death_lock);
 			*philos->death = 1;
 			pthread_mutex_unlock(philos[0].death_lock);
