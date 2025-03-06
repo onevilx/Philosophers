@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 01:15:27 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/03/06 04:02:38 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/03/06 17:33:45 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	launch_processes(t_program *prog)
 		prog->philos[i].pid = fork();
 		if (prog->philos[i].pid < 0)
 		{
-			write(2, "fork error\n", 11);
+			write(2, "fork error\n", 12);
 			exit(1);
 		}
 		if (prog->philos[i].pid == 0)

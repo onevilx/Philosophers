@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 01:15:20 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/03/05 01:15:21 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/03/06 17:15:57 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_delay(size_t milliseconds)
 
 	start = get_time();
 	while ((get_time() - start) < milliseconds)
-		usleep(400);
+		usleep(200);
 	return (0);
 }
 

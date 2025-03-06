@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 01:15:12 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/03/06 04:03:45 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/03/06 17:18:39 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	*monitor_routine(void *arg)
 			printf("%zu %d died\n", get_time() - philo->start_clock, philo->id);
 			exit(1);
 		}
-		usleep(1000);
+		ft_delay(1);
 	}
 	return (NULL);
 }
