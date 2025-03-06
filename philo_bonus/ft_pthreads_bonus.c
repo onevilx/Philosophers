@@ -5,61 +5,46 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/28 15:51:18 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/03/03 04:11:37 by yaboukir         ###   ########.fr       */
+/*   Created: 2025/03/05 01:15:12 by yaboukir          #+#    #+#             */
+/*   Updated: 2025/03/06 04:03:45 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-int	check_dead_loop(t_philo *philo)
-{
-	pthread_mutex_lock(philo->death_lock);
-	if (*philo->death == 1)
-		return (pthread_mutex_unlock(philo-> death_lock), 1);
-	pthread_mutex_unlock(philo->death_lock);
-	return (0);
-}
-
-void	*philo_routine(void *ptr)
+static void	*monitor_routine(void *arg)
 {
 	t_philo	*philo;
 
-	philo = (t_philo *)ptr;
-	if (philo->id % 2 == 0)
-		ft_delay(1);
-	while (!check_dead_loop(philo))
+	philo = (t_philo *)arg;
+	while (1)
 	{
-		ft_eat(philo);
-		ft_dream(philo);
-		ft_think(philo);
+		if ((get_time() - philo->last_meal) > philo->time_to_die)
+		{
+			sem_wait(philo->print_sem);
+			printf("%zu %d died\n", get_time() - philo->start_clock, philo->id);
+			exit(1);
+		}
+		usleep(1000);
 	}
-	return (ptr);
+	return (NULL);
 }
 
-int	thread_create(t_program *program, pthread_mutex_t *forks)
+void	philosopher_routine(t_philo *philo)
 {
-	pthread_t	watcher;
-	int			i;
+	pthread_t	monitor;
 
-	if (pthread_create(&watcher, NULL, &waiter, program->philos) != 0)
-		destory_pthread("Thread creation Error\n", program, forks);
-	i = 0;
-	while (i < program->philos[0].num_of_philos)
+	if (pthread_create(&monitor, NULL, monitor_routine, philo) != 0)
 	{
-		if (pthread_create(&program->philos[i].thread, NULL, &philo_routine,
-				&program->philos[i]) != 0)
-			destory_pthread("Thread Creation Error\n", program, forks);
-		i++;
+		write(2, "pthread_create\n", 16);
+		exit(1);
 	}
-	i = 0;
-	if (pthread_join(watcher, NULL) != 0)
-		destory_pthread("Thread can't join\n", program, forks);
-	while (i < program->philos[0].num_of_philos)
+	pthread_detach(monitor);
+	while (philo->num_of_eat == -1 || philo->meals_eaten < philo->num_of_eat)
 	{
-		if (pthread_join(program->philos[i].thread, NULL) != 0)
-			destory_pthread("Thread can't join\n", program, forks);
-		i++;
+		ft_eat(philo);
+		ft_sleeping(philo);
+		ft_think(philo);
 	}
-	return (0);
+	exit(0);
 }

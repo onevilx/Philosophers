@@ -5,66 +5,78 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/28 15:51:35 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/03/03 04:06:22 by yaboukir         ###   ########.fr       */
+/*   Created: 2025/03/05 01:15:27 by yaboukir          #+#    #+#             */
+/*   Updated: 2025/03/06 04:02:38 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-void	initialize_input(t_philo *philo, char **argv)
+void	pre_init_program(t_program *prog, char **argv)
 {
-	philo->num_of_philos = ft_atoi(argv[1]);
-	philo->time_to_die = ft_atoi(argv[2]);
-	philo->time_to_eat = ft_atoi(argv[3]);
-	philo->time_to_sleep = ft_atoi(argv[4]);
+	prog->num_of_philos = ft_atoi(argv[1]);
+	prog->num_of_eat = -1;
 	if (argv[5])
-		philo->num_of_eat = ft_atoi(argv[5]);
-	else
-		philo->num_of_eat = -1;
+		prog->num_of_eat = ft_atoi(argv[5]);
+	sem_unlink("/philo_forks");
+	sem_unlink("/philo_print");
+	prog->forks = sem_open("/philo_forks", O_CREAT, 0644, prog->num_of_philos);
+	prog->print_sem = sem_open("/philo_print", O_CREAT, 0644, 1);
 }
 
-void	start_program(t_program	*program, t_philo *philos)
-{
-	program->death_flag = 0;
-	program->philos = philos;
-	pthread_mutex_init(&program->write_lock, NULL);
-	pthread_mutex_init(&program->dead_lock, NULL);
-	pthread_mutex_init(&program->meal_lock, NULL);
-}
-
-void	start_forks(pthread_mutex_t *forks, int philos)
+void	init_program(t_program *prog, char **argv)
 {
 	int	i;
 
+	pre_init_program(prog, argv);
 	i = 0;
-	while (i < philos)
-		pthread_mutex_init(&forks[i++], NULL);
-}
-
-void	start_philos(t_philo *philos, t_program *program,
-			pthread_mutex_t *forks, char **argv)
-{
-	int	i;
-
-	i = 0;
-	while (i < ft_atoi(argv[1]))
+	while (i < prog->num_of_philos)
 	{
-		philos[i].id = i + 1;
-		philos[i].eating = 0;
-		philos[i].meals_eaten = 0;
-		initialize_input(&philos[i], argv);
-		philos[i].start_clock = get_time();
-		philos[i].last_meal = get_time();
-		philos[i].write_lock = &program->write_lock;
-		philos[i].death_lock = &program->dead_lock;
-		philos[i].meal_lock = &program->meal_lock;
-		philos[i].death = &program->death_flag;
-		philos[i].left_fork = &forks[i];
-		if (i == 0)
-			philos[i].right_fork = &forks[philos[i].num_of_philos - 1];
-		else
-			philos[i].right_fork = &forks[i - 1];
+		prog->philos[i].id = i + 1;
+		prog->philos[i].num_of_philos = prog->num_of_philos;
+		prog->philos[i].num_of_eat = prog->num_of_eat;
+		prog->philos[i].time_to_die = ft_atoi(argv[2]);
+		prog->philos[i].time_to_eat = ft_atoi(argv[3]);
+		prog->philos[i].time_to_sleep = ft_atoi(argv[4]);
+		prog->philos[i].start_clock = get_time();
+		prog->philos[i].last_meal = get_time();
+		prog->philos[i].meals_eaten = 0;
+		prog->philos[i].forks = prog->forks;
+		prog->philos[i].print_sem = prog->print_sem;
+		i++;
+	}
+}
+
+void	launch_processes(t_program *prog)
+{
+	int	i;
+
+	i = 0;
+	while (i < prog->num_of_philos)
+	{
+		prog->philos[i].pid = fork();
+		if (prog->philos[i].pid < 0)
+		{
+			write(2, "fork error\n", 11);
+			exit(1);
+		}
+		if (prog->philos[i].pid == 0)
+		{
+			philosopher_routine(&prog->philos[i]);
+			exit(0);
+		}
+		i++;
+	}
+}
+
+void	kill_processes(t_program *prog)
+{
+	int	i;
+
+	i = 0;
+	while (i < prog->num_of_philos)
+	{
+		kill(prog->philos[i].pid, SIGKILL);
 		i++;
 	}
 }

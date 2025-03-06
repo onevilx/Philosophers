@@ -6,12 +6,11 @@
 #    By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/01 19:09:46 by yaboukir          #+#    #+#              #
-#    Updated: 2025/03/03 04:04:23 by yaboukir         ###   ########.fr        #
+#    Updated: 2025/03/04 17:55:03 by yaboukir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS_PHILO_BONUS = philo_bonus.c ft_waiter_bonus.c ft_actions_bonus.c ft_declare_bonus.c \
-					ft_pthreads_bonus.c ft_helpers_bonus.c \
+SRCS_PHILO_BONUS = philo_bonus.c ft_actions_bonus.c ft_declare_bonus.c ft_pthreads_bonus.c ft_helpers_bonus.c \
 
 OBJS_PHILO_BONUS = $(SRCS_PHILO_BONUS:.c=.o)
 
