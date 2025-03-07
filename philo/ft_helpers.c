@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 15:51:29 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/03/03 03:50:35 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/03/07 03:31:34 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	ft_atoi(char *str)
 	number = 0;
 	sign = 1;
 	i = 0;
-	while (str[i] >= 9 && str[i] <= 13)
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{

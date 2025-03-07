@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 01:15:20 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/03/06 17:15:57 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/03/07 03:51:50 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	ft_atoi(char *str)
 	number = 0;
 	sign = 1;
 	i = 0;
-	while (str[i] >= 9 && str[i] <= 13)
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{
@@ -67,7 +67,13 @@ int	ft_atoi(char *str)
 
 int	check_number(char *str)
 {
-	if (!str)
+	if (!str || !*str)
+		return (1);
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == '+')
+		str++;
+	if (!(*str >= '0' && *str <= '9'))
 		return (1);
 	while (*str)
 	{

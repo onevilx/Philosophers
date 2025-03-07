@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 15:50:53 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/03/03 00:14:57 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/03/07 03:49:02 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,13 @@
 
 int	check_number(char *str)
 {
-	if (!str)
+	if (!str || !*str)
+		return (1);
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == '+')
+		str++;
+	if (!(*str >= '0' && *str <= '9'))
 		return (1);
 	while (*str)
 	{
@@ -48,7 +54,7 @@ int	main(int argc, char **argv)
 	pthread_mutex_t	forks[PHILO_MAX];
 
 	if (argc != 5 && argc != 6)
-		return (write(2, "Invalid input!", 15), 1);
+		return (write(2, "Invalid input!\n", 16), 1);
 	if (valid_args(argv) == 1)
 		return (1);
 	start_program(&program, philos);
