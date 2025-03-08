@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 15:51:18 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/03/02 02:49:22 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/03/08 17:06:22 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	*philo_routine(void *ptr)
 
 	philo = (t_philo *)ptr;
 	if (philo->id % 2 == 0)
-		ft_delay(1);
+		usleep(500);
 	while (!check_dead_loop(philo))
 	{
 		ft_eat(philo);

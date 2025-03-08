@@ -6,19 +6,23 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 15:51:29 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/03/07 03:31:34 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/03/08 17:21:25 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_delay(size_t milliseconds)
+int	ft_delay(t_philo *philo, size_t milliseconds)
 {
 	size_t	start;
 
 	start = get_time();
 	while ((get_time() - start) < milliseconds)
+	{
+		if (check_dead_loop(philo))
+			return (1);
 		usleep(400);
+	}
 	return (0);
 }
 
