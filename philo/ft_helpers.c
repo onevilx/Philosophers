@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 15:51:29 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/03/08 17:21:25 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/04/11 21:31:17 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	ft_atoi(char *str)
 	return (sign * number);
 }
 
-void	destory_pthread(char *str, t_program *program, pthread_mutex_t *forks)
+void	destroy_pthread(char *str, t_program *program, pthread_mutex_t *forks)
 {
 	int	i;
 

@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 15:54:33 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/03/08 17:21:45 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/04/11 21:31:53 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <sys/time.h>
 # include <stdio.h>
 
-# define PHILO_MAX 500
+# define PHILO_MAX 200
 
 typedef struct s_philo
 {
@@ -70,7 +70,7 @@ void	ft_message(char *str, t_philo *philo, int id);
 void	initialize_input(t_philo *philo, char **argv);
 void	start_forks(pthread_mutex_t *forks, int philos);
 void	start_program(t_program	*program, t_philo *philos);
-void	destory_pthread(char *str, t_program *program, pthread_mutex_t *forks);
+void	destroy_pthread(char *str, t_program *program, pthread_mutex_t *forks);
 void	start_philos(t_philo *philos, t_program *program,
 			pthread_mutex_t *forks, char **argv);
 size_t	get_time(void);

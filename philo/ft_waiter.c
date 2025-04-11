@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 15:51:01 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/03/03 00:34:07 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/04/11 21:46:11 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_message(char *str, t_philo *philo, int id)
 int	check_philo_dead(t_philo *philo, size_t time_to_die)
 {
 	pthread_mutex_lock(philo->meal_lock);
-	if (get_time() - philo->last_meal >= time_to_die && philo->eating == 0)
+	if (get_time() - philo->last_meal > time_to_die && philo->eating == 0)
 		return (pthread_mutex_unlock(philo->meal_lock), 1);
 	pthread_mutex_unlock(philo->meal_lock);
 	return (0);

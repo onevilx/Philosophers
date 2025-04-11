@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 15:50:53 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/03/08 17:51:55 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/04/11 21:31:45 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,6 @@ int	main(int argc, char **argv)
 	start_forks(forks, ft_atoi(argv[1]));
 	start_philos(philos, &program, forks, argv);
 	thread_create(&program, forks);
-	destory_pthread(NULL, &program, forks);
+	destroy_pthread(NULL, &program, forks);
 	return (0);
 }

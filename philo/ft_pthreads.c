@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 15:51:18 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/03/08 17:06:22 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/04/11 21:39:50 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,22 @@ int	thread_create(t_program *program, pthread_mutex_t *forks)
 	int			i;
 
 	if (pthread_create(&watcher, NULL, &waiter, program->philos) != 0)
-		destory_pthread("Thread creation Error\n", program, forks);
+		destroy_pthread("Thread creation Error\n", program, forks);
 	i = 0;
 	while (i < program->philos[0].num_of_philos)
 	{
 		if (pthread_create(&program->philos[i].thread, NULL, &philo_routine,
 				&program->philos[i]) != 0)
-			destory_pthread("Thread Creation Error\n", program, forks);
+			destroy_pthread("Thread Creation Error\n", program, forks);
 		i++;
 	}
 	i = 0;
 	if (pthread_join(watcher, NULL) != 0)
-		destory_pthread("Thread can't join\n", program, forks);
+		destroy_pthread("Thread can't join\n", program, forks);
 	while (i < program->philos[0].num_of_philos)
 	{
 		if (pthread_join(program->philos[i].thread, NULL) != 0)
-			destory_pthread("Thread can't join\n", program, forks);
+			destroy_pthread("Thread can't join\n", program, forks);
 		i++;
 	}
 	return (0);
