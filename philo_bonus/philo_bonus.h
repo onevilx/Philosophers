@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 01:14:51 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/03/06 17:36:14 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/04/17 23:33:13 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <signal.h>
 # include <fcntl.h>
 
-# define PHILO_MAX 500
+# define PHILO_MAX 200
 
 typedef struct s_philo
 {

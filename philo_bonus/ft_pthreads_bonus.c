@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 01:15:12 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/03/06 17:18:39 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/04/17 23:28:44 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	philosopher_routine(t_philo *philo)
 
 	if (pthread_create(&monitor, NULL, monitor_routine, philo) != 0)
 	{
-		write(2, "pthread_create\n", 16);
+		write(2, "Error: can't create monitor thread\n", 35);
 		exit(1);
 	}
 	pthread_detach(monitor);
