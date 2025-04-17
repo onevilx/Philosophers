@@ -6,7 +6,7 @@
 #    By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/01 19:09:46 by yaboukir          #+#    #+#              #
-#    Updated: 2025/03/04 17:55:03 by yaboukir         ###   ########.fr        #
+#    Updated: 2025/04/17 22:54:32 by yaboukir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,6 @@ clean:
 fclean: clean
 	$(RM) $(NAME_PHILO_BONUS)
 
-re: fclean all
+re: fclean bonus
 
 .PHONY: clean fclean re all bonus
